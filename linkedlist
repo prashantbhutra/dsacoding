@@ -1,0 +1,53 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+class Linkedlist {
+public:
+
+    int data;
+    Linkedlist* next;
+
+    Linkedlist (int data){
+        this->data=data;
+        this->next=NULL;
+    }
+};
+
+int lengthofnode (Linkedlist *head){
+
+    int length=0;
+    Linkedlist* itr=head;
+    while(itr !=NULL){
+        length++;
+        itr=itr->next;
+    }
+
+    return length;
+}
+
+int main()
+{
+
+    Linkedlist* node1 = new Linkedlist(3);
+    Linkedlist* node2 = new Linkedlist(4);
+    Linkedlist* node3 = new Linkedlist(5);
+
+    node1->next=node2;
+    node2->next=node3;
+    Linkedlist* itr=node1;
+    Linkedlist* head;
+
+    int middleterm= lengthofnode(head)/2   +1;
+
+    while(itr!=NULL){
+        middleterm--;
+        if(middleterm==0){
+            cout<<itr->data<<endl;
+            break;
+        }
+
+    }
+
+
+    return 0;
+}
