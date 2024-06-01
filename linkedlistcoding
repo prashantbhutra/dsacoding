@@ -1,3 +1,59 @@
+// adding at first
+
+#include<bits/stdc++.h>
+using namespace std;
+
+class linkedlist{
+
+    public:
+
+    int data;
+    linkedlist* next;
+
+    linkedlist(int data){
+        this->data=data;
+        this->next=next;
+    }
+
+};
+
+void insertAtstart(linkedlist* &head , int val){
+
+    linkkedlist* n = new linkedlist(val);
+
+    if(head==NULL){
+        head=n;
+        return;
+    }
+
+    n->next=head;
+    head=n;
+
+}
+
+
+void display(linkedlist* head){
+    linkedlist* temp=head;
+    while(temp!=NULL){
+        cout<<temp->data<<"->";
+        temp=temp->next;
+    }
+    cout<<"NULL"<<endl;
+}
+
+
+int main(){
+
+    linkedlist* head=NULL;
+    insertAtstart(head,1);
+    insertAtstart(head,2);
+    insertAtstart(head,3);
+    display(head);
+    return 0;
+}
+
+
+
 // Middle of linked list
 
 #include<bits/stdc++.h>
@@ -108,3 +164,6 @@ int main(){
     display(head);
     return 0;
 }
+
+
+
