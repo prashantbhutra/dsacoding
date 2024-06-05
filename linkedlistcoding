@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 //deletion of a linked list
 
 
@@ -39,6 +46,14 @@ void deleteAtHead(Linkedlist* &head){
 }
 
 void deletion(Linkedlist* head, int val){
+
+    if(head==NULL){
+        return;
+    }
+    if(head->next==NULL){
+        deleteAtHead(head);
+        return;
+    }
 
     Linkedlist *temp=head;
     while(temp->next->data!=val){
