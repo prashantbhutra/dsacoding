@@ -31,9 +31,16 @@ void insertAtstart(Linkedlist* &head , int val){
 
 }
 
+void deleteAtHead(Linkedlist* &head){
+    Linkedlist* todelete=head;
+    head=head->next;
+
+    delete todelete;
+}
+
 void deletion(Linkedlist* head, int val){
 
-    linkedlist *temp=head;
+    Linkedlist *temp=head;
     while(temp->next->data!=val){
         temp=temp->next;
     }
@@ -63,7 +70,8 @@ int main(){
     insertAtstart(head,4);
     display(head);
     //cout<<search(head,5)<<endl;
-    deletion(head,2);
+    //deletion(head,2);
+    deleteAtHead(head);
     display(head);
     return 0;
 }
