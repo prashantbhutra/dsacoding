@@ -1,4 +1,77 @@
-// reversing a Linkedlist
+// recursive way of reversing a Linkedlist
+
+#include<bits/stdc++.h>
+using namespace std;
+
+class  Linkedlist{
+
+    public:
+
+    int data;
+    Linkedlist* next;
+
+    Linkedlist(int data){
+        this->data=data;
+        this->next=NULL;
+    }
+};
+
+void insertAtstart(Linkedlist* &head , int val){
+
+    Linkedlist* n = new Linkedlist(val);
+
+    if(head==NULL){
+        head=n;
+        return;
+    }
+
+    n->next=head;
+    head=n;
+
+}
+
+void display(Linkedlist* head){
+    Linkedlist* temp=head;
+    while(temp!=NULL){
+        cout<<temp->data<<"->";
+        temp=temp->next;
+    }
+    cout<<"NULL"<<endl;
+}
+
+Linkedlist* reverseRecursive(Linkedlist* &head){
+
+    if(head==NULL || head->next==NULL){
+
+        return head;
+    }
+
+    Linkedlist *newhead= reverseRecursive(head->next);
+    head->next->next=head;
+
+    head->next=NULL;
+
+    return newhead;
+}
+
+int main(){
+
+    Linkedlist* head=NULL;
+    insertAtstart(head,1);
+    insertAtstart(head,2);
+    insertAtstart(head,3);
+    display(head);
+    insertAtstart(head,4);
+    display(head);
+    
+    Linkedlist* newhead= reverseRecursive(head);
+    display(newhead);
+
+    return 0;
+}
+
+
+// iterative way of reversing a Linkedlist
 
 
 #include<bits/stdc++.h>
