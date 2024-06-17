@@ -52,6 +52,40 @@ void insertAtTail(Linkedlist* &head,int val){
     n->prev=temp;
 }
 
+void deleteAtHead(Linkedlist* &head){
+
+    Linkedlist* todelete=head;
+    head=head->next;
+    head->prev=NULL;
+
+    delete todelete;
+}
+
+
+void deletion(Linkedlist* &head, int pos){
+
+    if(pos==1){
+        deleteAtHead(head);
+        return;
+    }
+
+    Linkedlist *temp=head;
+    int count=1;
+
+    while(temp!=NULL && count!=pos){
+
+        temp=temp->next;
+        count++;
+    }
+
+    temp->prev->next=temp->next;
+    if(temp->next!=NULL){
+         temp->next->prev=temp->prev;   
+    }
+    
+    delete temp;
+    
+}
 
 
 void display(Linkedlist* head){
@@ -74,6 +108,9 @@ int main(){
     insertAtTail(head,6);
     display(head);
     insertAtHead(head,7);
+    display(head);
+
+    deletion(head,5);
     display(head);
 
     return 0;
