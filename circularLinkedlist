@@ -1,0 +1,141 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+class Linkedlist{
+
+    public:
+
+    int data;
+    Linkedlist *next;
+
+    Linkedlist(int data){
+
+        this->data=data;
+        this->next=NULL;
+    }
+
+};
+
+void insertAtHead(Linkedlist* &head , int val){
+    
+    Linkedlist* n = new Linkedlist (val);
+    
+    if(head==NULL){
+        n->next=n;
+        head=n;
+        return;
+    }
+    
+    Linkedlist* temp = head;
+    
+    while(temp->next!=head){
+        temp=temp->next;
+    }
+    temp->next=n;
+    n->next=head;
+    head=n;
+}
+
+void insertAtTail(Linkedlist* &head , int val){
+    
+    if(head==NULL){
+        insertAtHead(head,val);
+        return;
+    }
+    
+    Linkedlist* n = new Linkedlist(val);
+    Linkedlist* temp = head;
+    
+    while(temp->next!=head){
+        temp=temp->next;
+    }
+    temp->next=n;
+    n->next=head;
+
+}
+
+void deleteAthead(Linkedlist* &head){
+    
+    Linkedlist* temp=head;
+    
+    while(temp->next!=head){
+        temp=temp->next;
+    }
+    
+    Linkedlist* todelete = head;
+    
+    temp->next=head->next;
+    head=head->next;
+    
+    delete todelete;
+    
+}
+
+void deletion (Linkedlist* &head , int pos){
+    
+    if(pos==1){
+        deleteAthead(head);
+        return;
+    }
+    Linkedlist* temp = head;
+    int count=1;
+    
+    while(count!=pos-1){
+        
+        temp=temp->next;
+        count++;
+        
+    }
+    
+    Linkedlist* todelete=temp->next;
+    temp->next=temp->next->next;
+    
+    delete todelete;
+}
+
+
+bool search(Linkedlist* head , int val){
+    
+    Linkedlist* temp = head;
+    while(temp->next!=head){
+        if(temp->data==val){
+            return true;
+        }
+        temp=temp->next;
+    }
+    
+    return false;
+}
+
+void display(Linkedlist* head){
+    
+    Linkedlist* temp = head;
+    
+    do{
+        cout<<temp->data<<" ";
+        temp=temp->next;
+    }while(temp!=head);
+    
+    cout<<endl;
+    
+}
+
+int main(){
+    
+    Linkedlist* head = NULL;
+    
+    insertAtTail(head,1);
+    insertAtTail(head,2);
+    insertAtTail(head,3);
+    insertAtTail(head,4);
+    display(head);
+    insertAtHead(head,5);
+    display(head);
+    
+    deletion(head,1);
+    display(head);
+
+    cout<<search(head,7)<<endl;
+    
+    return 0;
+}
